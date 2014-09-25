@@ -25,16 +25,16 @@ import mortar.Mortar;
 public class MainView extends LinearLayout {
   @Inject Main.Presenter presenter;
 
-  private TextView textView;
+  private final TextView textView;
 
   public MainView(Context context, AttributeSet attrs) {
     super(context, attrs);
     Mortar.inject(context, this);
+    textView = (TextView) findViewById(R.id.text);
   }
 
-  @Override protected void onFinishInflate() {
-    super.onFinishInflate();
-    textView = (TextView) findViewById(R.id.text);
+  @Override protected void onAttachedToWindow() {
+    super.onAttachedToWindow();
     presenter.takeView(this);
   }
 

@@ -36,8 +36,8 @@ public class FriendListView extends ListView {
     Mortar.inject(context, this);
   }
 
-  @Override protected void onFinishInflate() {
-    super.onFinishInflate();
+  @Override protected void onAttachedToWindow() {
+    super.onAttachedToWindow();
     presenter.takeView(this);
   }
 

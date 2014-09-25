@@ -16,12 +16,23 @@
 package com.example.mortar;
 
 import android.app.Application;
+import com.example.flow.GsonParceler;
+import com.example.flow.util.FlowBundler;
 import com.example.mortar.core.ApplicationModule;
+import com.example.mortar.screen.ChatListScreen;
+import com.google.gson.Gson;
 import dagger.ObjectGraph;
+import flow.Backstack;
+import javax.annotation.Nullable;
 import mortar.Mortar;
 import mortar.MortarScope;
 
-public class DemoApplication extends Application {
+public class MortarDemoApplication extends Application {
+  private final FlowBundler flowBundler = new FlowBundler(new GsonParceler(new Gson())) {
+    @Override protected Backstack getColdStartBackstack(@Nullable Backstack restoredBackstack) {
+      return restoredBackstack == null ? Backstack.single(new ChatListScreen()) : restoredBackstack;
+    }
+  };
   private MortarScope rootScope;
 
   @Override public void onCreate() {
@@ -29,6 +40,10 @@ public class DemoApplication extends Application {
 
     rootScope =
         Mortar.createRootScope(BuildConfig.DEBUG, ObjectGraph.create(new ApplicationModule()));
+  }
+
+  public FlowBundler getFlowBundler() {
+    return flowBundler;
   }
 
   @Override public Object getSystemService(String name) {
