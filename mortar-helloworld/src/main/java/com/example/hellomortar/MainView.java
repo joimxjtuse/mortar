@@ -20,7 +20,7 @@ import android.util.AttributeSet;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import javax.inject.Inject;
-import mortar.Mortar;
+import mortar.ObjectGraph;
 
 public class MainView extends LinearLayout {
   @Inject Main.Presenter presenter;
@@ -29,7 +29,7 @@ public class MainView extends LinearLayout {
 
   public MainView(Context context, AttributeSet attrs) {
     super(context, attrs);
-    Mortar.inject(context, this);
+    ObjectGraph.<Main.Component>from(context).inject(this);
   }
 
   @Override protected void onFinishInflate() {

@@ -16,6 +16,7 @@
 package com.example.mortar.screen;
 
 import android.os.Bundle;
+import mortar.BluntBlueprint;
 import com.example.mortar.R;
 import com.example.mortar.android.ActionBarOwner;
 import com.example.mortar.core.Main;
@@ -29,11 +30,8 @@ import dagger.Provides;
 import flow.Flow;
 import flow.HasParent;
 import flow.Layout;
-import flow.Parcer;
-import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import mortar.Blueprint;
 import mortar.PopupPresenter;
 import mortar.ViewPresenter;
 import rx.Subscription;
@@ -42,7 +40,7 @@ import rx.functions.Action1;
 import rx.subscriptions.Subscriptions;
 
 @Layout(R.layout.chat_view) //
-public class ChatScreen implements HasParent<ChatListScreen>, Blueprint {
+public class ChatScreen extends BluntBlueprint implements HasParent<ChatListScreen> {
   private final int conversationIndex;
 
   public ChatScreen(int conversationIndex) {

@@ -15,6 +15,7 @@
  */
 package com.example.mortar.core;
 
+import mortar.BluntBlueprint;
 import com.example.mortar.android.ActionBarModule;
 import com.example.mortar.android.ActionBarOwner;
 import com.example.mortar.screen.ChatListScreen;
@@ -29,7 +30,7 @@ import javax.inject.Singleton;
 import mortar.Blueprint;
 import rx.functions.Action0;
 
-public class Main implements Blueprint {
+public class Main extends BluntBlueprint {
 
   @Override public String getMortarScopeName() {
     return getClass().getName();
